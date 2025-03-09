@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: "K2D",sans-serif;
+}
+header,nav{
+    z-index: 1001 !important;
+}
+.section-container{
+    @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
+}
+.title{
+    @apply text-4xl md:text-5xl md:leading-snug font-bold my-2;
+}
+.subtitle{
+    @apply text-red uppercase tracking-wide font-semibold text-lg
+}
