@@ -5,10 +5,12 @@ import { useContext } from "react";
 import Modal from "./Modal";
 import useCart from "../hooks/useCart";
 import { FaUserCircle } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, getUser } = useContext(AuthContext);
   const [cart, refetch] = useCart();
+  const userInfo = getUser();
 
   const navItems = (
     <>
@@ -61,7 +63,14 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <Profile />
+          <>
+            {userInfo?.userInfo?.role === "admin" && (
+              <a href="/dashboard" className="btn bg-purple-600 text-white rounded-full px-5 flex items-center gap-2 mr-2">
+                <MdDashboard className="w-5 h-5" /> Dashboard
+              </a>
+            )}
+            <Profile />
+          </>
         ) : (
           <button className="btn bg-red text-white rounded-full px-5 flex items-center gap-2" onClick={() => document.getElementById("login").showModal()}>
             <FaUserCircle className="w-6 h-6" /> Login
